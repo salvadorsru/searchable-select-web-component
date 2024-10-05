@@ -12,7 +12,7 @@ A custom web component that transforms a standard `<select>` element into a sear
 
 ```html
 <searchable-select>
-    <input type="text" aria-label="Search countries">
+    <input type="text" aria-label="Search countries" placeholder="Where are you from?">
     <select name="countries" id="countries" hidden="hidden">
         <option value="1">Argentina</option>
         <option value="2">Brazil</option>
