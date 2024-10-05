@@ -3,24 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchable Select Preview</title>
     <script type="module" src="../index.js"></script>
     <link rel="stylesheet" href="../style.css">
-    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            padding: 0 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            justify-content: center;
+            height: 100%;
+            height: 100dvh;
+            background-color: #f9f9f9;
+            margin: 0;
+            overflow-y: scroll;
+        }
+
+        main {
+            margin: auto;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-wrap: pretty;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+            text-wrap: balance;
+            margin-bottom: 2rem;
+        }
+
+        code {
+            display: block;
+            margin-block: 10px;
+        }
+
+        form {
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid silver;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: grid;
+            gap: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            font-weight: bold;
+        }
+
+        .message {
+            font-weight: bold;
+        }
+
+        .test-result {
+            width: 100%;
+            display: grid;
+            gap: 1rem 2rem;
+            border: 1px solid silver;
+            border-radius: 5px;
+            margin-block: 2rem;
+            padding: 1rem;
+            grid-template-columns: max-content 1fr;
+        }
+    </style>
 </head>
 <body>
+    <main>
 
-    <searchable-select>
-        <input type="text" aria-label="Search countries">
-        <select name="countries" id="countries" hidden="hidden">
-            <option value="1">Argentina</option>
-            <option value="2">Brazil</option>
-            <option value="3">Canada</option>
-            <option value="4">France</option>
-            <option value="5">Germany</option>
-            <option value="6">Japan</option>
-        </select>
-    </searchable-select>
+        <h1>Searchable Select<br>Component Preview</h1>
+        <p>
+            This HTML page is designed to preview the <code>searchable-select</code> component and allow you to test its
+            functionality.
+        </p>
 
+        <div class="test-result">
+            <span>Message</span>
+            <span class="message" id="formMessage"></span>
+            <span>Result</span>
+            <span class="result" id="formResult"></span>
+        </div>
 
+        <form id="searchableSelectForm">
+            <searchable-select>
+                <input aria-label="Search countries" placeholder="Where are you living?" required>
+                <select name="rate" id="rate" required>
+                    <option value="" disabled selected>Select a country</option>
+                    <option value="1">Spain</option>
+                    <option value="2">Argentina</option>
+                    <option value="3">Brazil</option>
+                    <option value="4">Canada</option>
+                    <option value="5">France</option>
+                    <option value="6">Germany</option>
+                    <option value="7">Japan</option>
+                    <option value="8">Australia</option>
+                    <option value="9">China</option>
+                    <option value="10">India</option>
+                    <option value="11">Mexico</option>
+                    <option value="12">Italy</option>
+                    <option value="13">Russia</option>
+                    <option value="14">United Kingdom</option>
+                    <option value="15">United States</option>
+                    <option value="16">South Africa</option>
+                    <option value="17">New Zealand</option>
+                    <option value="18">South Korea</option>
+                    <option value="19">Netherlands</option>
+                    <option value="20">Sweden</option>
+                    <option value="21">Norway</option>
+                    <option value="22">Finland</option>
+                    <option value="23">Portugal</option>
+                    <option value="24">Greece</option>
+                    <option value="25">Switzerland</option>
+                    <option value="26">Austria</option>
+                    <option value="27">Belgium</option>
+                    <option value="28">Denmark</option>
+                    <option value="29">Chile</option>
+                    <option value="30">Colombia</option>
+                </select>
+            </searchable-select>
+            <button type="submit">SEND</button>
+        </form>
+    </main>
+    <script>
+        document.getElementById('searchableSelectForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            const messageDiv = document.getElementById('formMessage');
+            const resultDiv = document.getElementById('formResult');
+
+            // Get values from the form
+            const searchValue = this.querySelector('input[aria-label="Search countries"]').value;
+            const selectedCountry = this.rate.options[this.rate.selectedIndex].text;
+
+            // Show success message
+            messageDiv.textContent = 'Form submitted successfully!';
+            messageDiv.style.color = 'green'; // Success message color
+
+            // Show form result
+            resultDiv.textContent = `Your selection is: "${selectedCountry}"`;
+        });
+    </script>
 </body>
 </html>
