@@ -7,8 +7,6 @@ class SearchableSelect extends HTMLElement {
         this.$results.classList.add('results')
         this.$results.hidden = true;
         this.$select = this.querySelector('select')
-        this.hoverPosition = 0;
-        this.$options = this.$select.children
         this.$selectedResult = undefined;
         this.render()
     }
