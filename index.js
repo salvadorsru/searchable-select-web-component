@@ -18,6 +18,15 @@ class SearchableSelect extends HTMLElement {
         this.setDefault()
         this.renderResults();
         this.setEvents()
+        this.observeOptions()
+    }
+
+    observeOptions() {
+        const observer = new MutationObserver(() => {
+            this.renderResults()
+        });
+
+        observer.observe(this.$select, { childList: true })
     }
 
     toggleResults() {
